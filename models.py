@@ -31,7 +31,7 @@ The episode shocked some of the cartoon's fans both inside and outside China for
 the series since its debut in 1997.
 """
 
-DEFAULT_MAX_PREDICTIONS = 30
+DEFAULT_MAX_PREDICTIONS = 5
 """Max. predictions to come up with."""
 
 
