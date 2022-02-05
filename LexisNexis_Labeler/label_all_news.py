@@ -31,7 +31,7 @@ list_files = [f'LexisNexis_BostonMedia_NewsArticles_unique_{i}.csv' for i in ran
     
 for filename in list_files:
     try:
-        outfile = open(f'labels_{filename[:-4]}.csv', 'w')
+        outfile = open(f'result/labels_{filename[:-4]}.csv', 'w')
         outfile.write('doc_id,label_1,score_1,label_2,score_2,label_3,score_3,label_4,score_4,label_5,score_5\n')
 
         print(filename)
@@ -66,6 +66,6 @@ for filename in list_files:
         outfile.close()
 
     except Exception as e:
-        with open('errors.txt', 'w') as f:
+        with open('result/errors.txt', 'w') as f:
             print(filename, str(e))
             f.write(filename + " " + str(e))
