@@ -48,14 +48,14 @@ for filename in tqdm(list_files):
         docs = df['lede'].values
 
         tuple_id_and_outputs = []
-        for i in tqdm(range(len(doc_ids))):
+        for i in range(len(doc_ids)):
             if (docs[i]==None):
                 continue
 
             result = MODEL_ALL.predict(str(docs[i]))
             outputs_this_id = []
             for x in result:
-                outputs_this_id.append(x.label)
+                outputs_this_id.append(f'"{x.label}"')
                 outputs_this_id.append(str(x.score))
 
             tuple_id_and_outputs.append((str(doc_ids[i]), outputs_this_id))
