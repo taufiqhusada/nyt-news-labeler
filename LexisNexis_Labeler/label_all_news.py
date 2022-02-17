@@ -7,6 +7,7 @@ import os
 import pandas as pd
 import gc
 import glob
+import numpy as np
 
 def read_file(filename):
     df = pd.read_csv(filename, engine='python')
