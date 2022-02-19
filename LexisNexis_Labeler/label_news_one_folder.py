@@ -72,6 +72,6 @@ for filename in tqdm(list_files):
         gc.collect()
 
     except Exception as e:
-        with open('result_pararel/errors.txt', 'a') as f:
+        with open(f'result_pararel/errors_{folder_name}.txt', 'a') as f:
             print(filename, str(e))
             f.write(filename + " " + str(e) + '\n')
