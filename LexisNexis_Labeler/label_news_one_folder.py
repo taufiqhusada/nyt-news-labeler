@@ -18,14 +18,14 @@ sys.path.append('..')
 from models import (
     SELF_TEST_INPUT,
     Word2vecModel,
-    DescriptorsAllModel,
+    Descriptors600Model,
     Scaler)
 
 # Load the models into memory
 word2vec_model = Word2vecModel()
 scaler = Scaler()
 
-MODEL_ALL = DescriptorsAllModel(word2vec_model=word2vec_model, scaler=scaler)
+MODEL_ALL = Descriptors600Model(word2vec_model=word2vec_model, scaler=scaler)
 
 text = "Federal agents show stronger force at Portland protests despite order to withdraw"
 
