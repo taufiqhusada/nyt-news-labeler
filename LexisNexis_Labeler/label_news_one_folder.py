@@ -10,7 +10,7 @@ import glob
 import numpy as np
 
 def read_file(filename):
-    df = pd.read_csv(filename, engine='python')
+    df = pd.read_csv(filename, error_bad_lines=False,  encoding='utf8', engine='python')
     df.fillna('nothing',inplace=True)
     return df
 
