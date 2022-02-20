@@ -21,6 +21,7 @@ python label_news_one_folder.py 270099 &
 python label_news_one_folder.py 279925 &
 python label_news_one_folder.py 145223 &
 python label_news_one_folder.py 8110 &
+wait
 python label_news_one_folder.py 388135 &
 python label_news_one_folder.py 469785 &
 python label_news_one_folder.py 262350 &
