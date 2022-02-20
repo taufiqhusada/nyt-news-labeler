@@ -3,7 +3,7 @@
 #$ -P multilm
 #$ -l h_rt=200:00:00   # Specify the hard time limit for the job
 #$ -pe omp 12
-#$ -l mem_per_core=8G
+#$ -l mem_per_core=16G
 #$ -N nyt_labeler_pararel
 #$ -j y               # Merge the error and output streams into a single file
 #$ -V
