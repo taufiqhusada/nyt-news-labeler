@@ -1,14 +1,15 @@
 import os
+from tqdm import tqdm
 
-names_extraction_file = /projectnb/multilm/yusuf/racial_bias/LexisNexis/extracted_final.csv
-target_folder = /projectnb/multilm/thdaryan/racial_bias/names_extraction_splitted
+names_extraction_file = '/projectnb/multilm/yusuf/racial_bias/LexisNexis/extracted_final.csv'
+target_folder = '/projectnb/multilm/thdaryan/racial_bias/names_extraction_splitted'
 chunk_size = 500000
     
 with open(names_extraction_file, 'w') as infile:
     i = 0
     split = 0
     list_line = []
-    for line in infile:
+    for line in tqdm(infile):
         if (i==0):
             print(line)
     
