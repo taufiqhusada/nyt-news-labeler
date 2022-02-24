@@ -5,7 +5,7 @@ names_extraction_file = '/projectnb/multilm/yusuf/racial_bias/LexisNexis/extract
 target_folder = '/projectnb/multilm/thdaryan/racial_bias/names_extraction_splitted'
 chunk_size = 500000
     
-with open(names_extraction_file) as infile:
+with open(names_extraction_file, encoding='utf8') as infile:
     i = 0
     split = 0
     list_line = []
@@ -15,7 +15,7 @@ with open(names_extraction_file) as infile:
     
         list_line.append(line)
         if (i==chunk_size):
-            with open(os.path.join(target_folder, f'names_extraction_{split}'), 'w') as outfile:
+            with open(os.path.join(target_folder, f'names_extraction_{split}'), 'w+', encoding='utf8') as outfile:
                 for item in list_line:
                     outfile.write(item)
 
