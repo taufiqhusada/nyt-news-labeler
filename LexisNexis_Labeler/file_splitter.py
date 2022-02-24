@@ -15,7 +15,7 @@ with open(names_extraction_file, encoding='utf8') as infile:
     
         list_line.append(line)
         if (i==chunk_size):
-            with open(os.path.join(target_folder, f'names_extraction_{split}'.csv), 'w+', encoding='utf8') as outfile:
+            with open(os.path.join(target_folder, f'names_extraction_{split}.csv'), 'w+', encoding='utf8') as outfile:
                 for item in list_line:
                     outfile.write(item)
 
