@@ -3,7 +3,7 @@ from tqdm import tqdm
 
 names_extraction_file = '/projectnb/multilm/yusuf/racial_bias/LexisNexis/extracted_final.csv'
 target_folder = '/projectnb/multilm/thdaryan/racial_bias/names_extraction_splitted'
-chunk_size = 500000
+chunk_size = 15000000
     
 with open(names_extraction_file, encoding='utf8') as infile:
     i = 0
