@@ -1,4 +1,7 @@
+import os
+
 names_extraction_file = /projectnb/multilm/yusuf/racial_bias/LexisNexis/extracted_final.csv
+target_folder = /projectnb/multilm/thdaryan/racial_bias/names_extraction_splitted
 chunk_size = 500000
     
 with open(names_extraction_file, 'w') as infile:
@@ -11,7 +14,7 @@ with open(names_extraction_file, 'w') as infile:
     
         list_line.append(line)
         if (i==chunk_size):
-            with open(f'names_extraction_{split}', 'w') as outfile:
+            with open(os.path.join(target_folder, f'names_extraction_{split}'), 'w') as outfile:
                 for item in list_line:
                     outfile.write(item)
 
