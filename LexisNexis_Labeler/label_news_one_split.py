@@ -43,9 +43,8 @@ with open(f'result_alligned/extracted_topic_{file_split}.tsv', 'w+') as outfile:
 id_from_name_extraction = 0
 for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None)):
     try:
-        df_chunk.rename(columns={1:'sent', 2:'names', 3:'start', 4:'end', 5:'source_type', 6:'DOC-ID'}, inplace=True)
+        df_chunk.rename(columns={'0': 'id_from_name_extraction', 1:'sent', 2:'names', 3:'start', 4:'end', 5:'source_type', 6:'DOC-ID'}, inplace=True)
         print(df_chunk.head())
-        break
 
         labels = []
         scores = []
@@ -53,11 +52,11 @@ for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None)):
 
         for sent in tqdm(df_chunk['sent'].values):
             result = MODEL_ALL.predict(str(sent))[0]
-            ids.append(i)
+            
             labels.append(result.label)
             scores.append(result.score)
 
-        df_to_save = pd.DataFrame({'id_from_name_extraction':ids, 'DOC-ID':df_chunk['DOC-ID'].values, 'start': df_chunk['start'].values, 
+        df_to_save = pd.DataFrame({'id_from_name_extraction':df_chunk['id_from_name_extraction'].values, 'DOC-ID':df_chunk['DOC-ID'].values, 'start': df_chunk['start'].values, 
                                   'end': df_chunk['end'].values, 'label': labels, 'score': scores})
 
         df_to_save.to_csv(f'result_alligned/extracted_topic_{folder_name}.tsv', mode='a', header= False, sep='\t')
