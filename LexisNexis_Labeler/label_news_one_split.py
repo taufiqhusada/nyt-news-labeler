@@ -40,25 +40,22 @@ filename = f'/projectnb/multilm/thdaryan/racial_bias/names_extraction_splitted/n
 with open(f'result_alligned/extracted_topic_{file_split}.tsv', 'w+', encoding='utf8') as outfile:
     outfile.write('id_from_name_extraction\tDOC-ID\tstart\tend\tsource_type\tlabel\tscore\n')
 
-id_from_name_extraction = 0
 for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None,  error_bad_lines=False,  encoding='utf8', engine='python')):
     try:
         df_chunk.rename(columns={0: 'id_from_name_extraction', 1:'sent', 2:'names', 3:'start', 4:'end', 5:'source_type', 6:'DOC-ID'}, inplace=True)
         print(df_chunk.head())
 
-        labels = []
-        scores = []
-        ids = []
+        labels = [None for i in range(len(df_chunk))]
+        scores = [None for i in range(len(df_chunk))]
 
-        for sent in tqdm(df_chunk['sent'].values):
+        for i, sent in tqdm(enumerate(df_chunk['sent'].values)):
             try:
                 result = MODEL_ALL.predict(sent)[0]
 
-                labels.append(result.label)
-                scores.append(result.score)
+                labels[i] = result.label
+                scores[i] = result.score
             except:
-                labels.append(None)
-                scores.append(None)
+                continue
 
         df_to_save = pd.DataFrame({'id_from_name_extraction':df_chunk['id_from_name_extraction'].values, 'DOC-ID':df_chunk['DOC-ID'].values, 'start': df_chunk['start'].values, 
                                   'end': df_chunk['end'].values, 'label': labels, 'score': scores})
