@@ -58,7 +58,7 @@ for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None,  error_
 
         df_to_save = pd.DataFrame({'id_from_name_extraction':df_chunk['id_from_name_extraction'].values, 'DOC-ID':df_chunk['DOC-ID'].values, 'start': df_chunk['start'].values, 
                                   'end': df_chunk['end'].values, 'label': labels, 'score': scores})
-        df_to_save.set_index('id_from_name_extraction')
+     
         print(df_to_save.head())
         df_to_save.to_csv(f'result_alligned/extracted_topic_{file_split}.tsv', mode='a', header= False, sep='\t', encoding='utf-8-sig')
         
