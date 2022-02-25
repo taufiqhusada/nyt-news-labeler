@@ -34,8 +34,8 @@ for x in result:
     print(x.label)
     print(x.score)
 
-filename =  sys.argv[1] 
-file_split = sys.argv[2] 
+file_split = sys.argv[1] 
+filename = f'/projectnb/multilm/thdaryan/racial_bias/names_extraction_splitted/names_extraction_{file_split}.csv'
 
 with open(f'result_alligned/extracted_topic_{file_split}.tsv', 'w+') as outfile:
     outfile.write('id_from_name_extraction\tDOC-ID\tstart\tend\tsource_type\tlabel\tscore\n')
@@ -49,7 +49,7 @@ for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None)):
         scores = []
         ids = []
 
-        for sent in df_chunk['sent'].values:
+        for sent in tqdm(df_chunk['sent'].values):
             result = MODEL_ALL.predict(str(sent))[0]
             ids.append(i)
             labels.append(result.label)
