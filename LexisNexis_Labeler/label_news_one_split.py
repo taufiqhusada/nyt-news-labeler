@@ -41,7 +41,7 @@ with open(f'result_alligned/extracted_topic_{file_split}.tsv', 'w+', encoding='u
     outfile.write('id_from_name_extraction\tDOC-ID\tstart\tend\tsource_type\tlabel\tscore\n')
 
 id_from_name_extraction = 0
-for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None,  error_bad_lines=False,  encoding='utf8', engine='python')):
+for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None,  error_bad_lines=False,  encoding='utf-8', engine='python')):
     try:
         df_chunk.rename(columns={0: 'id_from_name_extraction', 1:'sent', 2:'names', 3:'start', 4:'end', 5:'source_type', 6:'DOC-ID'}, inplace=True)
         print(df_chunk.head())
@@ -59,7 +59,7 @@ for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None,  error_
         df_to_save = pd.DataFrame({'id_from_name_extraction':df_chunk['id_from_name_extraction'].values, 'DOC-ID':df_chunk['DOC-ID'].values, 'start': df_chunk['start'].values, 
                                   'end': df_chunk['end'].values, 'label': labels, 'score': scores})
         print(df_to_save.head())
-        df_to_save.to_csv(f'result_alligned/extracted_topic_{folder_name}.tsv', mode='a', header= False, sep='\t', encoding='utf8')
+        df_to_save.to_csv(f'result_alligned/extracted_topic_{file_split}.tsv', mode='a', header= False, sep='\t', encoding='utf-8')
         
         del df_chunk, df_to_save
         gc.collect()
