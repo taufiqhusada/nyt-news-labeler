@@ -44,6 +44,8 @@ id_from_name_extraction = 0
 for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None)):
     try:
         df_chunk.rename(columns={1:'sent', 2:'names', 3:'start', 4:'end', 5:'source_type', 6:'DOC-ID'}, inplace=True)
+        print(df_chunk.head())
+        break
 
         labels = []
         scores = []
