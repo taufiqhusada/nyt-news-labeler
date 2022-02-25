@@ -58,8 +58,9 @@ for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None)):
 
         df_to_save = pd.DataFrame({'id_from_name_extraction':df_chunk['id_from_name_extraction'].values, 'DOC-ID':df_chunk['DOC-ID'].values, 'start': df_chunk['start'].values, 
                                   'end': df_chunk['end'].values, 'label': labels, 'score': scores})
-
+        print(df_to_save.head())
         df_to_save.to_csv(f'result_alligned/extracted_topic_{folder_name}.tsv', mode='a', header= False, sep='\t')
+        
         del df_chunk, df_to_save
         gc.collect()
     except Exception as e:
