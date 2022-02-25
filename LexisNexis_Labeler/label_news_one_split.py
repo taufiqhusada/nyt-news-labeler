@@ -38,7 +38,7 @@ file_split = sys.argv[1]
 filename = f'/projectnb/multilm/thdaryan/racial_bias/names_extraction_splitted/names_extraction_{file_split}.csv'
 
 with open(f'result_alligned/extracted_topic_{file_split}.tsv', 'w+', encoding='utf8') as outfile:
-    outfile.write('id_from_name_extraction\tDOC-ID\tstart\tend\tsource_type\tlabel\tscore\n')
+    outfile.write('id_from_name_extraction\tDOC-ID\tlabel\tscore\n')
 
 for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None,  error_bad_lines=False,  encoding='utf8', engine='python')):
     try:
@@ -57,8 +57,7 @@ for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None,  error_
             except:
                 continue
 
-        df_to_save = pd.DataFrame({'id_from_name_extraction':df_chunk['id_from_name_extraction'].values, 'DOC-ID':df_chunk['DOC-ID'].values, 'start': df_chunk['start'].values, 
-                                  'end': df_chunk['end'].values, 'label': labels, 'score': scores})
+        df_to_save = pd.DataFrame({'id_from_name_extraction':df_chunk['id_from_name_extraction'].values, 'DOC-ID':df_chunk['DOC-ID'].values, 'label': labels, 'score': scores})
      
         print(df_to_save.head())
         df_to_save.to_csv(f'result_alligned/extracted_topic_{file_split}.tsv', mode='a', header= False, sep='\t', encoding='utf8',index=False)
