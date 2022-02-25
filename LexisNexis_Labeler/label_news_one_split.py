@@ -56,7 +56,7 @@ for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None)):
             scores.append(result.score)
 
         df_to_save = pd.DataFrame({'id_from_name_extraction':ids, 'DOC-ID':df_chunk['DOC-ID'].values, 'start': df_chunk['start'].values, 
-                                  'end': df_chunk['end'].values, 'label': labels, 'score': scores}}
+                                  'end': df_chunk['end'].values, 'label': labels, 'score': scores})
 
         df_to_save.to_csv(f'result_alligned/extracted_topic_{folder_name}.tsv', mode='a', header= False, sep='\t')
         del df_chunk, df_to_save
