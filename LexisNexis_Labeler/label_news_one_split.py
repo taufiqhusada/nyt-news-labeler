@@ -43,7 +43,7 @@ with open(f'result_alligned/extracted_topic_{file_split}.tsv', 'w+') as outfile:
 id_from_name_extraction = 0
 for df_chunk in tqdm(pd.read_csv(filename, chunksize=10**4, header=None)):
     try:
-        df_chunk.rename(columns={'0': 'id_from_name_extraction', 1:'sent', 2:'names', 3:'start', 4:'end', 5:'source_type', 6:'DOC-ID'}, inplace=True)
+        df_chunk.rename(columns={0: 'id_from_name_extraction', 1:'sent', 2:'names', 3:'start', 4:'end', 5:'source_type', 6:'DOC-ID'}, inplace=True)
         print(df_chunk.head())
 
         labels = []
