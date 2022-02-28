@@ -1,9 +1,9 @@
 #!/bin/bash -l
 
 #$ -P multilm
-#$ -l h_rt=200:00:00   # Specify the hard time limit for the job
+#$ -l h_rt=99:00:00   # Specify the hard time limit for the job
 #$ -pe omp 14
-#$ -l mem_per_core=16G
+#$ -l mem_per_core=12G
 #$ -N nyt_pararel_alligned
 #$ -j y               # Merge the error and output streams into a single file
 #$ -V
